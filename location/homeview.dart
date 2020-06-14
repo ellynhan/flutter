@@ -10,7 +10,8 @@ class HomeView extends StatelessWidget {
     var userLocation = Provider.of<UserLocation>(context);
     return Center(
       child: Text(
-          'Location: Lat${userLocation?.latitude}, Long: ${userLocation?.longitude}'),
+          'Location: Lat${userLocation?.latitude}, Long: ${userLocation?.longitude}'
+      ),
     );
   }
 }
