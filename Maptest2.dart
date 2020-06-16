@@ -1,7 +1,10 @@
+//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+//Doesn't work. Because,flutter_polyline_points started to support Polyline by itself.
+
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -29,8 +32,7 @@ class MapPageState extends State<MapPage> {
   List<LatLng> polylineCoordinates = [];
   // this is the key object - the PolylinePoints
   // which generates every polyline between start and finish
-  PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPIKey = "My Key";
+  String googleAPIKey = "AIzaSyCQBy8IK74-OPl-vCvvss7jhs6vJXW40zE";
   // for my custom icons
   BitmapDescriptor sourceIcon;
   BitmapDescriptor destinationIcon;
@@ -77,25 +79,13 @@ class MapPageState extends State<MapPage> {
     });
   }
   setPolylines() async {
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-        googleAPIKey,
-        PointLatLng(SOURCE_LOCATION.latitude, SOURCE_LOCATION.longitude),
-        PointLatLng(DEST_LOCATION.latitude, DEST_LOCATION.longitude),
-        travelMode: TravelMode.driving,
-    );
-    print(result.points);
-    if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
-        polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
-    }
     setState(() {
-      Polyline polyline = Polyline(
-          polylineId: PolylineId('poly'),
-          color: Color.fromARGB(255, 40, 122, 198),
-          points: polylineCoordinates
-      );
-      _polylines.add(polyline);
+      _polylines.add(Polyline(
+        polylineId: PolylineId('pid'),
+        points:[LatLng(42.7477863, -71.1699932),LatLng(42.6871386, -71.2143403)],
+        color: Colors.blue,
+        visible: true,
+
+      ));
     });
   }
-}
